@@ -49,7 +49,7 @@
       >add</button>
     <button class="btn variant-filled-surface w-32" on:click={clear_timers}
       >clear</button>
-    <div class="grid">
+    <div class="flex flex-row flex-wrap gap-5 mt-5 justify-center">
       {#each $storage_timers as timer}
         <TimerContainer {timer} />
       {/each}
