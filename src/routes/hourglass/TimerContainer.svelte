@@ -13,7 +13,6 @@
 
   export var timer: TimerData;
 
-  var show_info_box = false;
   var display_time: string = "00:00:00";
   var display_total_time: string = "00:00:00";
   var is_editing_name: boolean = false;
@@ -49,14 +48,6 @@
     is_editing_name = !is_editing_name;
   }
 
-  function open_info_box(e: MouseEvent): void {
-    show_info_box = true;
-  }
-
-  function close_info_box(): void {
-    show_info_box = false;
-  }
-
   function update_total_time(): void {
     display_total_time = get_display_time_from_unix_time(
       calc_total_duration(timer.timerIntervals),
@@ -78,16 +69,18 @@
   $: if (!timer.isRunning) clearInterval(interval);
 </script>
 
-<div class="container {timer.visible ? '' : 'inactive'}">
+<div class="card p-4 w-80 pt-10 {timer.visible ? '' : 'inactive'}">
   <!--    TIMERS DISPLAY    -->
-  <h1 style="margin-bottom: 5px;">
+
+  <h2 class="h2">
     {display_time}
-  </h1>
-  <h4 style="margin:0;">
+  </h2>
+  <h4 class="h4 m-5">
     {display_total_time}
   </h4>
   <!--    NAME LABEL    -->
   <div
+    class="mb-5"
     on:dblclick={(e) => {
       e.preventDefault();
       if (!is_editing_name) toggle_name_edit();
@@ -96,7 +89,7 @@
     tabindex="0">
     {#if is_editing_name}
       <input
-        class="input"
+        class="input text-center"
         bind:value={timer.name}
         on:keypress={(event) => {
           if (event.key === "Enter") {
@@ -109,50 +102,23 @@
   </div>
 
   <!--    BUTTONS    -->
-  {#if !timer.isRunning}
-    <button class="btn" on:click={start_timer}><b>start</b></button>
-  {:else}
-    <button
-      class="btn"
-      on:click={stop_timer}
-      style="background-color: var(--accent-dark);"><b>stop</b></button>
-  {/if}
-  <div>
-    <button
-      class="btn"
-      on:mouseenter={(e) => open_info_box(e)}
-      on:mouseleave={() => close_info_box()}><b>show more</b></button>
-  </div>
-  <div class="floating_button">
+  <div class="card-footer mt-2">
+    {#if !timer.isRunning}
+      <button class="btn variant-filled-surface w-full" on:click={start_timer}
+        ><p>start</p></button>
+    {:else}
+      <button class="btn variant-filled-error w-full" on:click={stop_timer}
+        ><p>stop</p></button>
+    {/if}
     <!-- <button
-            on:click={() => {
-                var res = window.confirm("Your are deleting:\n " + timer.name);
-                if (res) {
-                    remove_timer(timer.id);
-                }
-            }}
-            ><img
-                width="15px"
-                height="15px"
-                src="./x.png"
-                alt="remove timer" /></button> -->
-    <button
-      on:click={() => {
-        timer.visible = !timer.visible;
-        console.log(timer.visible);
-        $storage_timers = [...$storage_timers];
-      }}
-      ><img
-        width="15px"
-        height="15px"
-        src="./eye.png"
-        alt="disable timer" /></button>
+      class="btn variant-filled-surface w-full mt-2"
+      on:click={start_timer}><p>show more</p></button> -->
   </div>
   <!--    INFO BOX    -->
-  {#if show_info_box}
+  <!-- {#if show_info_box}
     <div>
       <h2><em>Intervals</em></h2>
-      <table class="log_table">
+      <table>
         <tbody>
           <tr>
             <th>start</th>
@@ -186,5 +152,5 @@
         </tbody>
       </table>
     </div>
-  {/if}
+  {/if} -->
 </div>
