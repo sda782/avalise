@@ -1,36 +1,108 @@
 <script lang="ts">
+  import hljs from "highlight.js/lib/core";
+  import xml from "highlight.js/lib/languages/xml";
   import { onMount } from "svelte";
+  import "highlight.js/styles/github-dark.css";
 
   let card_input: number, card_output: number;
   let textarea_value: any;
+  let textarea_render: HTMLElement;
   let output_view: HTMLDivElement;
 
   onMount(() => {
     card_output = card_input;
+    hljs.registerLanguage("xml", xml);
   });
+  function update_code() {
+    if (textarea_render) {
+      let content = textarea_value;
+      if (content) {
+        content = content.replace(/&/g, "&amp");
+        content = content.replace(/</g, "&lt;");
+        content = content.replace(/>/g, "&gt;");
+
+        textarea_render.innerHTML = content;
+        hljs.highlightElement(textarea_render);
+        textarea_render.dataset.highlighted = "";
+      }
+    }
+  }
 </script>
 
-<div class="container h-full mx-auto flex justify-center">
-  <div class="w-full text-center">
+<div class="w-full">
+  <div class="w-full h-[88vh] max-h-[88vh] text-center px-5">
     <h1 class="h1 my-10">Typewriter</h1>
-    <div class="w-full inline-grid grid-cols-2 gap-5 px-10">
+    <div class="w-full max-w-full h-full inline-grid grid-cols-2">
       <div
-        class="card"
+        class="card w-full text-left code-wrapper"
         bind:clientHeight={card_input}
         on:change={(e) => {
           card_output = card_input;
         }}>
+        <pre class="absolute w-full h-full"><code
+            class="xml"
+            bind:this={textarea_render}></code></pre>
         <textarea
-          class="w-full h-full bg-inherit"
+          wrap="soft"
+          spellcheck="false"
+          class="absolute border-transparent focus:border-transparent focus:ring-0"
           bind:value={textarea_value}
           on:input={() => {
-            console.log(output_view);
             if (output_view) output_view.innerHTML = textarea_value;
+            if (textarea_render) {
+              textarea_render.innerHTML = textarea_value;
+              update_code();
+            }
           }} />
       </div>
-      <div class="card text-left p-5" bind:clientHeight={card_output}>
+      <div class="card w-full text-left p-5" bind:clientHeight={card_output}>
         <div bind:this={output_view}></div>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  textarea {
+    font-family: "Courier New", Courier, monospace;
+    font-weight: 400;
+    font-size: 12pt;
+    line-height: 150%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: calc(100% - 30px);
+    width: calc(100% - 30px);
+    padding: 15px;
+    z-index: 2;
+    overflow-x: auto;
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0);
+    caret-color: white;
+    resize: none;
+  }
+  pre {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    background: #1b1b1b;
+  }
+  code {
+    font-family: "Courier New", Courier, monospace;
+    padding: 15px;
+    height: calc(100% - 30px);
+    width: calc(100% - 30px);
+    font-weight: 400;
+    font-size: 12pt;
+    line-height: 150%;
+    overflow-y: scroll;
+    overflow-x: auto;
+    background-color: transparent;
+  }
+</style>

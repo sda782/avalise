@@ -1,13 +1,7 @@
 <script lang="ts">
   import { links } from "$lib/compass";
 
-  var form_search_word: string;
-
-  function search_website(link: string) {
-    var search_url =
-      "https://" + link + "/catalogsearch/result/?q=" + form_search_word;
-    window.open(search_url, "_blank");
-  }
+  var form_search_word: string = "";
 </script>
 
 <div class="container w-10/12 h-full flex justify-center mx-auto">
@@ -20,14 +14,17 @@
       bind:value={form_search_word} />
     <div>
       {#each links as link}
-        <button
-          type="button"
+        <a
           class="btn variant-filled-surface"
-          on:click={() => search_website(link.link)}
+          target="_blank"
+          href={"https://" +
+            link.link +
+            "/catalogsearch/result/?q=" +
+            form_search_word}
           ><img
             class="w-10 h-7"
             src="https://flagcdn.com/{link.country_code}.svg"
-            alt={link.country_code} /></button>
+            alt={link.country_code} /></a>
       {/each}
     </div>
   </div>
