@@ -13,34 +13,34 @@
             width="32"
             src="/favicon.png"
             alt="compass"
-            class="m-auto" /></AppRailAnchor>
+            class="m-auto grayscale" /></AppRailAnchor>
         <AppRailAnchor href="/compass" class="relative inset-0 flex">
           <img
             width="32"
             src="/menu_icons/compass.png"
             alt="compass"
-            class="m-auto invert" />
+            class="m-auto" />
         </AppRailAnchor>
         <AppRailAnchor href="/hourglass" class="relative inset-0 flex">
           <img
             width="32"
             src="/menu_icons/hourglass.png"
             alt="hourglass"
-            class="m-auto invert" />
+            class="m-auto" />
         </AppRailAnchor>
         <AppRailAnchor href="/typewriter" class="relative inset-0 flex">
           <img
             width="32"
             src="/menu_icons/typewriter.png"
             alt="typewriter"
-            class="m-auto invert" />
+            class="m-auto" />
         </AppRailAnchor>
         <AppRailAnchor href="/globe" class="relative inset-0 flex">
           <img
             width="32"
             src="/menu_icons/internet.png"
             alt="globe"
-            class="m-auto invert" />
+            class="m-auto" />
         </AppRailAnchor>
       </svelte:fragment>
     </AppRail>
