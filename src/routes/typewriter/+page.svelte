@@ -8,10 +8,16 @@
   let textarea_value: any;
   let textarea_render: HTMLElement;
   let output_view: HTMLDivElement;
+  let text_input: any;
 
   onMount(() => {
     card_output = card_input;
     hljs.registerLanguage("xml", xml);
+    text_input.addEventListener("scroll", () => {
+      console.log("sdfsd");
+      textarea_render.scrollTop = text_input.scrollTop;
+      textarea_render.scrollLeft = text_input.scrollLeft;
+    });
   });
   function update_code() {
     if (textarea_render) {
@@ -39,14 +45,14 @@
         on:change={(e) => {
           card_output = card_input;
         }}>
-        <pre class="absolute w-full h-full"><code
-            class="xml"
+        <pre class="absolute w-full h-full w-max-[500px]"><code
+            class="xml scrollbar-hide"
             bind:this={textarea_render}></code></pre>
         <textarea
-          wrap="soft"
           spellcheck="false"
-          class="absolute border-transparent focus:border-transparent focus:ring-0"
+          class="absolute border-transparent focus:border-transparent focus:ring-0 scrollbar-hide"
           bind:value={textarea_value}
+          bind:this={text_input}
           on:input={() => {
             if (output_view) output_view.innerHTML = textarea_value;
             if (textarea_render) {
@@ -86,12 +92,18 @@
     height: 100%;
     width: 100%;
     position: absolute;
+    overflow-x: auto;
+    overflow-y: scroll;
     top: 0;
     left: 0;
-    overflow: hidden;
     padding: 0;
     margin: 0;
-    background: #1b1b1b;
+    background: transparent;
+    white-space: pre-wrap; /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word;
   }
   code {
     font-family: "Courier New", Courier, monospace;
@@ -104,5 +116,17 @@
     overflow-y: scroll;
     overflow-x: auto;
     background-color: transparent;
+  }
+  .code-wrapper {
+    background: #1b1b1b;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* For IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 </style>

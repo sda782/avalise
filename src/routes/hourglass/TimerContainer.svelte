@@ -104,7 +104,7 @@
   <!--    BUTTONS    -->
   <div class="card-footer mt-2">
     {#if !timer.isRunning}
-      <button class="btn variant-filled-surface w-full" on:click={start_timer}
+      <button class="btn variant-filled-primary w-full" on:click={start_timer}
         ><p>start</p></button>
     {:else}
       <button class="btn variant-filled-error w-full" on:click={stop_timer}
