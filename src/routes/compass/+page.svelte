@@ -18,9 +18,9 @@
         <input
           class="checkbox"
           type="checkbox"
-          bind:value={is_url}
-          on:change={() => {
-            ls = [...ls];
+          bind:checked={is_url}
+          on:change={(e) => {
+            ls = [...links];
           }} />
         <p>category</p>
       </label>
@@ -32,8 +32,9 @@
           target="_blank"
           href={"https://" +
             link.link +
-            (!is_url ? "/catalogsearch/result/?q=" : "") +
-            form_search_word}
+            (form_search_word.length !== 0
+              ? (is_url ? "/" : "/catalogsearch/result/?q=") + form_search_word
+              : "")}
           ><img
             class="w-10 h-7"
             src="https://flagcdn.com/{link.country_code}.svg"

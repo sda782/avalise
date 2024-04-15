@@ -42,6 +42,20 @@
             alt="globe"
             class="m-auto invert" />
         </AppRailAnchor>
+        <AppRailAnchor href="/canvas" class="relative inset-0 flex">
+          <img
+            width="32"
+            src="/menu_icons/internet.png"
+            alt="canvas"
+            class="m-auto invert" />
+        </AppRailAnchor>
+        <AppRailAnchor href="/checklist" class="relative inset-0 flex">
+          <img
+            width="32"
+            src="/menu_icons/internet.png"
+            alt="checklist"
+            class="m-auto invert" />
+        </AppRailAnchor>
       </svelte:fragment>
     </AppRail>
   </svelte:fragment>
