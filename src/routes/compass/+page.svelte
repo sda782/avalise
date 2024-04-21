@@ -1,18 +1,15 @@
 <script lang="ts">
   import { links } from "$lib/compass";
-  import type { MouseEventHandler } from "svelte/elements";
   var ls = links;
   var form_search_word: string = "";
   var is_url: boolean = false;
   var search_history: Array<string> = [];
-  function add_search(e: Event): void {
-    console.log("1");
-    var t = e.target;
+  function add_search(e: any): void {
+    console.log(e);
+    var t = e.originalTarget;
     if (!t) return;
     var p = (t as HTMLElement).parentElement;
-    console.log("2");
     if (!p) return;
-    console.log("3");
     search_history.push((p as HTMLAnchorElement).href);
     search_history = [...search_history];
   }
@@ -56,11 +53,22 @@
       {/each}
     </div>
     <div>
-      <ul>
-        {#each search_history.reverse() as sh}
-          <li><a href={sh}>{sh}</a></li>
-        {/each}
-      </ul>
+      <table class="text-left">
+        <thead>
+          <tr>
+            <th>Search</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#if search_history.length > 0}
+            {#each search_history as sh}
+              <tr>
+                <td><a href={sh}>{sh}</a></td>
+              </tr>
+            {/each}
+          {/if}
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
