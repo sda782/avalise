@@ -5,7 +5,13 @@ export type site_link = {
 }
 
 
-
+export const _links: Array<site_link> = [
+    {
+        country_code: "dk",
+        link: "avalise.vercel.app",
+        full_link: ""
+    }
+]
 export const links: Array<site_link> = [
     {
         country_code: "cz",

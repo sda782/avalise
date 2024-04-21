@@ -3,6 +3,16 @@
   var ls = links;
   var form_search_word: string = "";
   var is_url: boolean = false;
+  var search_history: Array<string> = [];
+  function add_search(e: any): void {
+    console.log(e);
+    var t = e.originalTarget;
+    if (!t) return;
+    var p = (t as HTMLElement).parentElement;
+    if (!p) return;
+    search_history.push((p as HTMLAnchorElement).href);
+    search_history = [...search_history];
+  }
 </script>
 
 <div class="container w-10/12 h-full flex justify-center mx-auto">
@@ -35,11 +45,30 @@
             (form_search_word.length !== 0
               ? (is_url ? "/" : "/catalogsearch/result/?q=") + form_search_word
               : "")}
+          on:click={add_search}
           ><img
             class="w-10 h-7"
             src="https://flagcdn.com/{link.country_code}.svg"
             alt={link.country_code} /></a>
       {/each}
+    </div>
+    <div>
+      <table class="text-left">
+        <thead>
+          <tr>
+            <th>Search</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#if search_history.length > 0}
+            {#each search_history as sh}
+              <tr>
+                <td><a href={sh}>{sh}</a></td>
+              </tr>
+            {/each}
+          {/if}
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
