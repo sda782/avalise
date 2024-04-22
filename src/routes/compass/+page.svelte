@@ -53,6 +53,7 @@
       {/each}
     </div>
     <div>
+      <button class="float-end btn variant-outline-secondary">Clear</button>
       <table class="text-left">
         <thead>
           <tr>
