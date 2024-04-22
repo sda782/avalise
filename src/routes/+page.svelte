@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="card w-1/3">
-        <div class="card-header"><p class="h3">Chceklist</p></div>
+        <div class="card-header"><p class="h3">Checklist</p></div>
         <img
           src="/menu_icons/internet.png"
           alt="compass"
