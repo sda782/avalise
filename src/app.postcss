@@ -3,10 +3,9 @@
 @tailwind utilities;
 @tailwind variants;
 
-@font-face {
-	font-family: 'Abril Fatface';
-	src: url('/fonts/Bitter.ttf');
-	font-display: swap;
+:root [data-theme='crimson'] {
+    --theme-font-family-base: 'Bitter', serif;
+    --theme-font-family-heading: 'Bitter', serif;
 }
 
 html, body { @apply h-full overflow-hidden; }
