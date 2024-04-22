@@ -36,13 +36,23 @@
         </div>
       </div>
       <div class="card w-1/3">
-        <div class="card-header"><p class="h3">Globe</p></div>
+        <div class="card-header"><p class="h3">Chceklist</p></div>
         <img
           src="/menu_icons/internet.png"
           alt="compass"
           class="mx-auto my-10 invert w-1/6" />
         <div class="card-footer">
-          <a href="globe" class="btn variant-filled-primary w-full">open</a>
+          <a href="checklist" class="btn variant-filled-primary w-full">open</a>
+        </div>
+      </div>
+      <div class="card w-1/3">
+        <div class="card-header"><p class="h3">Canvas</p></div>
+        <img
+          src="/menu_icons/internet.png"
+          alt="compass"
+          class="mx-auto my-10 invert w-1/6" />
+        <div class="card-footer">
+          <a href="canvas" class="btn variant-filled-primary w-full">open</a>
         </div>
       </div>
     </div>

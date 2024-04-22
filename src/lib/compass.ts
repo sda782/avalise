@@ -4,6 +4,11 @@ export type site_link = {
     full_link: string
 }
 
+export type search_history_item = {
+    id: number,
+    link: string,
+    country_code: string | null
+}
 
 export const links: Array<site_link> = [
     {
