@@ -8,6 +8,7 @@ export const countries = [
     "fi",
     "pl",
     "it",
+    "ie",
     "gb",
     "be",
     "nl",
