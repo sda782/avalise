@@ -57,6 +57,9 @@ export const links: Array<site_link> = [
         link: "euroskateshop.it",
         full_link: ""
     }, {
+        country_code: "ie",
+        link: "euroskateshop.ie", full_link: ""
+    }, {
         country_code: "gb",
         link: "euroskateshop.uk", full_link: ""
     }, {

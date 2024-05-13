@@ -43,8 +43,7 @@
 </script>
 
 <div class="container h-full mx-auto flex justify-center">
-  <div class="w-full text-center">
-    <h1 class="h1 my-10">Hourglass</h1>
+  <div class="w-full text-center mt-10">
     <button class="btn variant-filled-surface w-32" on:click={add_new_timer}
       >add</button>
     <button class="btn variant-filled-surface w-32" on:click={clear_timers}

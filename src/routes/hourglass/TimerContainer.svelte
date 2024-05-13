@@ -100,7 +100,34 @@
       <p>{timer.name}</p>
     {/if}
   </div>
-
+  <table class="w-full">
+    <tbody>
+      <tr>
+        <th>start</th>
+        <th>end</th>
+        <th>time</th>
+      </tr>
+      {#each timer.timerIntervals as time_int}
+        <tr>
+          <td>
+            {display_time_to_string(time_int.startTime)}
+          </td>
+          <td>
+            {#if time_int.stopTime}
+              {display_time_to_string(time_int.stopTime)}
+            {/if}
+          </td>
+          <td>
+            {#if time_int.stopTime}
+              {get_display_time_from_unix_time(
+                time_int.stopTime - time_int.startTime,
+              )}
+            {/if}
+          </td>
+        </tr>
+      {/each}
+    </tbody>
+  </table>
   <!--    BUTTONS    -->
   <div class="card-footer mt-2">
     {#if !timer.isRunning}
@@ -110,47 +137,5 @@
       <button class="btn variant-filled-error w-full" on:click={stop_timer}
         ><p>stop</p></button>
     {/if}
-    <!-- <button
-      class="btn variant-filled-surface w-full mt-2"
-      on:click={start_timer}><p>show more</p></button> -->
   </div>
-  <!--    INFO BOX    -->
-  <!-- {#if show_info_box}
-    <div>
-      <h2><em>Intervals</em></h2>
-      <table>
-        <tbody>
-          <tr>
-            <th>start</th>
-            <th>end</th>
-            <th>time</th>
-          </tr>
-          {#each timer.timerIntervals as time_int}
-            <tr>
-              <td>
-                {display_time_to_string(time_int.startTime)}
-              </td>
-              <td>
-                {#if time_int.stopTime}
-                  {display_time_to_string(time_int.stopTime)}
-                {/if}
-              </td>
-              <td>
-                {#if time_int.stopTime}
-                  {get_display_time_from_unix_time(
-                    time_int.stopTime - time_int.startTime,
-                  )}
-                {/if}
-              </td>
-            </tr>
-          {/each}
-          <tr>
-            <td></td>
-            <td></td>
-            <td>{display_total_time}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  {/if} -->
 </div>

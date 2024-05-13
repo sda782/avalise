@@ -20,8 +20,7 @@
 </script>
 
 <div class="container w-10/12 h-full flex justify-center mx-auto">
-  <div class="w-full text-center">
-    <h1 class="h1 my-10">Check List</h1>
+  <div class="w-full text-center mt-10">
     <button class="btn variant-outline-primary" on:click={add}>Add</button>
     <table class="w-full">
       <tbody>

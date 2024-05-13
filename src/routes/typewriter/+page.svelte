@@ -36,8 +36,7 @@
 </script>
 
 <div class="w-full">
-  <div class="w-full h-[88vh] max-h-[88vh] text-center px-5">
-    <h1 class="h1 my-10">Typewriter</h1>
+  <div class="w-full h-[88vh] max-h-[88vh] text-center px-5 mt-10">
     <div class="w-full max-w-full h-full inline-grid grid-cols-2">
       <div
         class="card w-full text-left code-wrapper"
