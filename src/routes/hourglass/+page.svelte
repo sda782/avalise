@@ -3,6 +3,7 @@
   import TimerContainer from "./TimerContainer.svelte";
   import type { TimerData } from "$lib/timer";
   import { storage_timers } from "../../lib/storage_manager";
+  import { browser } from "$app/environment";
 
   var birdnames: Array<string> = [];
 
@@ -35,10 +36,14 @@
     var res = await fetch("./names.txt");
     var text = await res.text();
     birdnames = [...text.split("\n")];
+
+    if (browser) {
+      $storage_timers = JSON.parse(window.localStorage.getItem("timers") || "");
+      console.log($storage_timers);
+    }
     if ($storage_timers.length <= 0) {
       add_new_timer();
     }
-    console.log($storage_timers);
   });
 </script>
 
@@ -50,7 +55,7 @@
       >clear</button>
     <div class="flex flex-row flex-wrap gap-5 mt-5 justify-center">
       {#each $storage_timers as timer}
-        <TimerContainer {timer} />
+        <TimerContainer {timer} delete_timer={remove_timer} />
       {/each}
     </div>
   </div>

@@ -12,6 +12,7 @@
   import { storage_timers } from "../../lib/storage_manager";
 
   export var timer: TimerData;
+  export var delete_timer: (id: string) => void;
 
   var display_time: string = "00:00:00";
   var display_total_time: string = "00:00:00";
@@ -137,5 +138,8 @@
       <button class="btn variant-filled-error w-full" on:click={stop_timer}
         ><p>stop</p></button>
     {/if}
+    <button
+      class="btn variant-outline-primary w-full mt-3"
+      on:click={() => delete_timer(timer.id)}><p>remove</p></button>
   </div>
 </div>
