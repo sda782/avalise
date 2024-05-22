@@ -7,7 +7,8 @@ export type site_link = {
 export type search_history_item = {
     id: number,
     link: string,
-    country_code: string | null
+    country_code: string | null,
+    time_stamp: string
 }
 
 export const _links: Array<site_link> = [

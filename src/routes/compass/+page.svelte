@@ -1,19 +1,21 @@
 <script lang="ts">
   import { links, type search_history_item } from "$lib/compass";
+  import { display_time_to_string } from "$lib/render";
   var ls = links;
   var form_search_word: string = "";
-  var is_url: boolean = false;
+  var is_search: boolean = true;
   var search_history: Array<search_history_item> = [];
   function add_search(e: any): void {
     console.log(e);
     var t = e.target;
     if (!t) return;
-    var p = (t as HTMLElement).parentElement;
-    if (!p) return;
+    /* var p = (t as HTMLElement).parentElement;
+    if (!p) return; */
     var i: search_history_item = {
       id: Date.now(),
-      link: (p as HTMLAnchorElement).href,
-      country_code: p.getAttribute("data-country-code"),
+      link: (t as HTMLAnchorElement).href,
+      country_code: t.getAttribute("data-country-code"),
+      time_stamp: display_time_to_string(Date.now()),
     };
     search_history.push(i);
     search_history = [...search_history];
@@ -36,38 +38,36 @@
         <input
           class="checkbox"
           type="checkbox"
-          bind:checked={is_url}
+          bind:checked={is_search}
           on:change={(e) => {
             ls = [...links];
           }} />
-        <p>category</p>
+        <p>search</p>
       </label>
     </div>
     <div>
       {#each ls as link}
         <a
-          class="btn variant-filled-surface"
+          class="btn bg-cover bg-center mx-1 mb-2 w-[5em] h-[2.5em]"
+          style="background-image: url('https://flagcdn.com/{link.country_code}.svg');"
           target="_blank"
           data-country-code={link.country_code}
           href={"https://" +
             link.link +
             (form_search_word.length !== 0
-              ? (is_url ? "/" : "/catalogsearch/result/?q=") + form_search_word
+              ? (is_search ? "/catalogsearch/result/?q=" : "/") +
+                form_search_word
               : "")}
-          on:click={add_search}
-          ><img
-            class="w-10 h-7"
-            src="https://flagcdn.com/{link.country_code}.svg"
-            alt={link.country_code} /></a>
+          on:click={add_search}><span></span></a>
       {/each}
     </div>
     <div>
       <button class="float-end btn variant-outline-secondary" on:click={clear}
         >Clear</button>
-      <table class="text-left">
+      <table class="text-left w-full">
         <thead>
           <tr>
-            <th>Search</th>
+            <th>Search History</th>
           </tr>
         </thead>
         <tbody>
@@ -80,6 +80,7 @@
                     src="https://flagcdn.com/{sh.country_code}.svg"
                     alt={sh.country_code} /></td>
                 <td><a target="_blank" href={sh.link}>{sh.link}</a></td>
+                <td>{sh.time_stamp}</td>
               </tr>
             {/each}
           {/if}

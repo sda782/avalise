@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onDestroy, onMount } from "svelte";
+  import { afterUpdate, onDestroy, onMount } from "svelte";
   import {
     calc_total_duration,
     type TimerData,
@@ -43,6 +43,7 @@
     timer.isRunning = false;
     $storage_timers = [...$storage_timers];
     update_total_time();
+    display_time = "00:00:00";
   }
 
   function toggle_name_edit() {
@@ -62,6 +63,10 @@
     update_total_time();
   });
 
+  afterUpdate(() => {
+    update_total_time();
+  });
+
   onDestroy(() => {
     clearInterval(interval);
   });
@@ -70,13 +75,13 @@
   $: if (!timer.isRunning) clearInterval(interval);
 </script>
 
-<div class="card p-4 w-80 pt-10 {timer.visible ? '' : 'inactive'}">
+<div class="card px-4 w-80 pt-5 h-full">
   <!--    TIMERS DISPLAY    -->
 
   <h2 class="h2">
     {display_time}
   </h2>
-  <h4 class="h4 m-5">
+  <h4 class="h5 m-2">
     {display_total_time}
   </h4>
   <!--    NAME LABEL    -->
@@ -130,16 +135,18 @@
     </tbody>
   </table>
   <!--    BUTTONS    -->
-  <div class="card-footer mt-2">
+  <div class="card-footer bottom-0 mt-2 flex gap-2">
     {#if !timer.isRunning}
-      <button class="btn variant-filled-primary w-full" on:click={start_timer}
-        ><p>start</p></button>
+      <button
+        class="btn btn-sm variant-filled-primary flex-1"
+        on:click={start_timer}><p>start</p></button>
     {:else}
-      <button class="btn variant-filled-error w-full" on:click={stop_timer}
-        ><p>stop</p></button>
+      <button
+        class="btn btn-sm variant-filled-error flex-1"
+        on:click={stop_timer}><p>stop</p></button>
     {/if}
     <button
-      class="btn variant-outline-primary w-full mt-3"
+      class="btn btn-sm variant-outline-primary flex-1"
       on:click={() => delete_timer(timer.id)}><p>remove</p></button>
   </div>
 </div>

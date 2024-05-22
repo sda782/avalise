@@ -13,5 +13,5 @@ export function get_display_time_from_unix_time(time: number): string {
 }
 
 export function display_time_to_string(time: number): string {
-    return new Date(time).toLocaleTimeString()
+    return new Date(time).toLocaleTimeString('en-GB')
 }
