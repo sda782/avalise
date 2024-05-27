@@ -79,10 +79,10 @@
   <!--    TIMERS DISPLAY    -->
 
   <h2 class="h2">
-    {display_time}
+    {display_total_time}
   </h2>
   <h4 class="h5 m-2">
-    {display_total_time}
+    {display_time}
   </h4>
   <!--    NAME LABEL    -->
   <div

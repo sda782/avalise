@@ -1,7 +1,7 @@
 <script lang="ts">
   import "../app.postcss";
-  import { AppBar, AppShell } from "@skeletonlabs/skeleton";
-  import { AppRail, AppRailTile, AppRailAnchor } from "@skeletonlabs/skeleton";
+  import { AppShell } from "@skeletonlabs/skeleton";
+  import { AppRail, AppRailAnchor } from "@skeletonlabs/skeleton";
 </script>
 
 <AppShell>
@@ -38,14 +38,14 @@
         <AppRailAnchor href="/canvas" class="relative inset-0 flex">
           <img
             width="32"
-            src="/menu_icons/internet.png"
+            src="/menu_icons/canvas.png"
             alt="canvas"
             class="m-auto invert" />
         </AppRailAnchor>
         <AppRailAnchor href="/checklist" class="relative inset-0 flex">
           <img
             width="32"
-            src="/menu_icons/internet.png"
+            src="/menu_icons/document.png"
             alt="checklist"
             class="m-auto invert" />
         </AppRailAnchor>
@@ -53,4 +53,9 @@
     </AppRail>
   </svelte:fragment>
   <slot />
+  <div
+    class="fixed bottom-0 flex justify-center w-full p-2"
+    style="background-color: #15171f;">
+    <p>Aevum - 2024</p>
+  </div>
 </AppShell>

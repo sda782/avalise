@@ -26,6 +26,9 @@
   }
 </script>
 
+<svelte:head>
+  <title>Compass</title>
+</svelte:head>
 <div class="container w-10/12 h-full flex justify-center mx-auto">
   <div class="w-full text-center mt-10">
     <div class="mb-5">

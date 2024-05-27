@@ -47,6 +47,9 @@
   });
 </script>
 
+<svelte:head>
+  <title>Hourglass</title>
+</svelte:head>
 <div class="container h-full mx-auto flex justify-center">
   <div class="w-full text-center mt-10">
     <button class="btn variant-filled-surface w-32" on:click={add_new_timer}
