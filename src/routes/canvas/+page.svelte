@@ -2,6 +2,9 @@
   var barcode: string = "";
 </script>
 
+<svelte:head>
+  <title>Canvas</title>
+</svelte:head>
 <div class="container w-10/12 h-full flex justify-center mx-auto">
   <div class="w-full text-center mt-10">
     <input class="input my-10" type="text" bind:value={barcode} />
