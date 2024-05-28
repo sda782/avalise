@@ -35,13 +35,6 @@
             alt="typewriter"
             class="m-auto invert" />
         </AppRailAnchor>
-        <AppRailAnchor href="/canvas" class="relative inset-0 flex">
-          <img
-            width="32"
-            src="/menu_icons/canvas.png"
-            alt="canvas"
-            class="m-auto invert" />
-        </AppRailAnchor>
         <AppRailAnchor href="/checklist" class="relative inset-0 flex">
           <img
             width="32"
@@ -49,13 +42,15 @@
             alt="checklist"
             class="m-auto invert" />
         </AppRailAnchor>
+        <AppRailAnchor href="/canvas" class="relative inset-0 flex">
+          <img
+            width="32"
+            src="/menu_icons/canvas.png"
+            alt="canvas"
+            class="m-auto invert" />
+        </AppRailAnchor>
       </svelte:fragment>
     </AppRail>
   </svelte:fragment>
   <slot />
-  <div
-    class="fixed bottom-0 flex justify-center w-full p-2"
-    style="background-color: #15171f;">
-    <p>Aevum - 2024</p>
-  </div>
 </AppShell>

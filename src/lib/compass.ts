@@ -73,6 +73,9 @@ export const links: Array<site_link> = [
         country_code: "fr",
         link: "euroskateshop.fr", full_link: ""
     }, {
+        country_code: "hr",
+        link: "euroskateshop.hr", full_link: ""
+    }, {
         country_code: "se",
         link: "euroskateshop.se", full_link: ""
     }, {

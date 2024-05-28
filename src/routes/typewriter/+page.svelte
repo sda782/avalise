@@ -6,6 +6,7 @@
   var product_information: string;
   var description: string;
   var features: string;
+  var footer: string;
   var new_spec_name: string;
   var new_icon_name: string;
 
@@ -35,7 +36,7 @@
     <div class="col-md-3"><p><b>${features}:</b></p>
         ${formatted_specs_list}
     </div>
-</div>`;
+</div>${footer}`;
     alert(output_html);
   }
 
@@ -56,7 +57,16 @@
       },
     ];
     new_spec_name = "";
-    new_icon_name = "";
+    new_icon_name = "no_spec_icon";
+  }
+
+  function clear_all() {
+    product_information = "";
+    description = "";
+    features = "";
+    footer = "";
+    new_spec_name = "";
+    new_icon_name = "no_spec_icon";
   }
 </script>
 
@@ -65,10 +75,13 @@
 </svelte:head>
 
 <div class="container w-10/12 h-full flex justify-center mx-auto">
-  <div class="w-1/2 text-center mt-10">
+  <div class="w-3/4 text-center mt-10">
     <button
-      class="btn variant-filled-primary mb-2"
-      on:click={genereate_output_html}>Generate HTML Code</button>
+      class="btn variant-filled-primary mb-2 mr-2 float-start"
+      on:click={genereate_output_html}>Generate HTML Code</button
+    ><button
+      class="btn variant-filled-surface mb-2 float-start"
+      on:click={clear_all}>Clear All</button>
     <input
       bind:value={product_information}
       class="input mb-2"
@@ -77,18 +90,26 @@
       bind:value={description}
       class="textarea h-[15em] mb-2 resize-none"
       placeholder="description" /><br />
-    <input class="input mb-2" placeholder="features" /><br />
-    {#each $specs_list_store as spec}
-      <div class="flex">
-        <SpecsField spec_name={spec.spec_name} icon_name={spec.icon_name} />
-        <button
-          class="max-w-11 max-h-11 btn variant-outline-surface ml-2"
-          on:click={() => remove_spec(spec)}>x</button>
-      </div>
-    {/each}
-    <SpecsField bind:icon_name={new_icon_name} bind:spec_name={new_spec_name}
-    ></SpecsField>
-    <button class="btn variant-filled-primary w-full" on:click={add_spec}
-      >Add Spec</button>
+    <div
+      class="border-dotted border-surface-500 border-4 p-2"
+      style="border-radius: 25px;">
+      <input class="input mb-2" placeholder="features" /><br />
+      {#each $specs_list_store as spec}
+        <div class="flex">
+          <SpecsField spec_name={spec.spec_name} icon_name={spec.icon_name} />
+          <button
+            class="max-w-11 max-h-11 btn variant-outline-surface ml-2"
+            on:click={() => remove_spec(spec)}>x</button>
+        </div>
+      {/each}
+      <SpecsField bind:icon_name={new_icon_name} bind:spec_name={new_spec_name}
+      ></SpecsField>
+      <button class="btn variant-filled-primary w-full" on:click={add_spec}
+        >Add Spec</button>
+    </div>
+    <textarea
+      class="textarea h-[10em] my-2 resize-none"
+      placeholder="description footer text"
+      bind:value={footer}></textarea>
   </div>
 </div>

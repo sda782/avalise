@@ -13,6 +13,7 @@ export const countries = [
     "be",
     "nl",
     "fr",
+    "hr",
     "se",
     "dk",
     "no",

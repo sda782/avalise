@@ -113,25 +113,37 @@
         <th>end</th>
         <th>time</th>
       </tr>
-      {#each timer.timerIntervals as time_int}
+      {#if timer.timerIntervals.length > 0}
+        {#each timer.timerIntervals as time_int}
+          <tr>
+            <td>
+              {display_time_to_string(time_int.startTime)}
+            </td>
+            <td>
+              {#if time_int.stopTime}
+                {display_time_to_string(time_int.stopTime)}
+              {:else}
+                <span>00:00:00</span>
+              {/if}
+            </td>
+            <td>
+              {#if time_int.stopTime}
+                {get_display_time_from_unix_time(
+                  time_int.stopTime - time_int.startTime,
+                )}
+              {:else}
+                <span>00:00:00</span>
+              {/if}
+            </td>
+          </tr>
+        {/each}
+      {:else}
         <tr>
-          <td>
-            {display_time_to_string(time_int.startTime)}
-          </td>
-          <td>
-            {#if time_int.stopTime}
-              {display_time_to_string(time_int.stopTime)}
-            {/if}
-          </td>
-          <td>
-            {#if time_int.stopTime}
-              {get_display_time_from_unix_time(
-                time_int.stopTime - time_int.startTime,
-              )}
-            {/if}
-          </td>
+          <td><span>00:00:00</span></td>
+          <td><span>00:00:00</span></td>
+          <td><span>00:00:00</span></td>
         </tr>
-      {/each}
+      {/if}
     </tbody>
   </table>
   <!--    BUTTONS    -->

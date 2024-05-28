@@ -52,10 +52,10 @@
 </svelte:head>
 <div class="container h-full mx-auto flex justify-center">
   <div class="w-full text-center mt-10">
-    <button class="btn variant-filled-surface w-32" on:click={add_new_timer}
-      >add</button>
+    <button class="btn variant-filled-primary w-32" on:click={add_new_timer}
+      >Add</button>
     <button class="btn variant-filled-surface w-32" on:click={clear_timers}
-      >clear</button>
+      >Clear Timers</button>
     <div class="flex flex-row flex-wrap gap-5 mt-5 justify-center">
       {#each $storage_timers as timer}
         <TimerContainer {timer} delete_timer={remove_timer} />

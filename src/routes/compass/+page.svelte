@@ -9,8 +9,6 @@
     console.log(e);
     var t = e.target;
     if (!t) return;
-    /* var p = (t as HTMLElement).parentElement;
-    if (!p) return; */
     var i: search_history_item = {
       id: Date.now(),
       link: (t as HTMLAnchorElement).href,
@@ -65,7 +63,7 @@
       {/each}
     </div>
     <div>
-      <button class="float-end btn variant-outline-secondary" on:click={clear}
+      <button class="float-end btn variant-filled-surface" on:click={clear}
         >Clear</button>
       <table class="text-left w-full">
         <thead>

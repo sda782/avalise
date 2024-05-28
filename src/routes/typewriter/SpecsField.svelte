@@ -1,7 +1,7 @@
 <script lang="ts">
   var base_spec_url = "https://www.usaskateshop.com/media/wysiwyg/icons/";
   export let spec_name: string;
-  export let icon_name: string;
+  export let icon_name: string = "no_spec_icon";
   function open_input() {
     let res = prompt("Spec name", icon_name);
     if (res) icon_name = res;
