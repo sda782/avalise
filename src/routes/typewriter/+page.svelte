@@ -22,8 +22,8 @@
   <div class="w-3/4 text-center">
     <PresetSpecs bind:show_import_modal={show_modal} />
   </div>
+  <ImportModal bind:show={show_modal} />
 </div>
-<ImportModal bind:show={show_modal} />
 
 <style>
   .sidebar {

@@ -2,7 +2,6 @@
   import SpecsField from "./SpecsField.svelte";
   import { specs_list_store } from "../../../lib/storage_manager";
   import type { spec_field } from "$lib/typewriter";
-  import ImportModal from "../ImportModal.svelte";
 
   var product_information: string;
   var description: string;
@@ -72,9 +71,7 @@
     new_icon_name = "no_spec_icon";
   }
 
-  function import_html(
-    event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement },
-  ) {
+  function import_html() {
     show_import_modal = true;
   }
 </script>
