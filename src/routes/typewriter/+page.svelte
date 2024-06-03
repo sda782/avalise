@@ -1,5 +1,7 @@
 <script lang="ts">
+  import ImportModal from "./ImportModal.svelte";
   import PresetSpecs from "./specs/PresetSpecs.svelte";
+  var show_modal: boolean;
 </script>
 
 <svelte:head>
@@ -18,9 +20,10 @@
     </ul>
   </div>
   <div class="w-3/4 text-center">
-    <PresetSpecs />
+    <PresetSpecs bind:show_import_modal={show_modal} />
   </div>
 </div>
+<ImportModal bind:show={show_modal} />
 
 <style>
   .sidebar {

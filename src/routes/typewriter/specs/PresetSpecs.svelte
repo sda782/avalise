@@ -2,6 +2,7 @@
   import SpecsField from "./SpecsField.svelte";
   import { specs_list_store } from "../../../lib/storage_manager";
   import type { spec_field } from "$lib/typewriter";
+  import ImportModal from "../ImportModal.svelte";
 
   var product_information: string;
   var description: string;
@@ -9,6 +10,8 @@
   var footer: string;
   var new_spec_name: string;
   var new_icon_name: string;
+
+  export var show_import_modal: boolean;
 
   function genereate_output_html() {
     var formatted_specs_list = "";
@@ -68,11 +71,20 @@
     new_spec_name = "";
     new_icon_name = "no_spec_icon";
   }
+
+  function import_html(
+    event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement },
+  ) {
+    show_import_modal = true;
+  }
 </script>
 
 <button
   class="btn variant-filled-primary mb-2 mr-2 float-start"
   on:click={genereate_output_html}>Generate HTML Code</button
+><button
+  class="btn variant-filled-primary mb-2 mr-2 float-start"
+  on:click={import_html}>Import</button
 ><button class="btn variant-filled-surface mb-2 float-end" on:click={clear_all}
   >Clear All</button>
 <input
