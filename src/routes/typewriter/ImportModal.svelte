@@ -1,39 +1,36 @@
 <script lang="ts">
   import { product_description } from "$lib/storage_manager";
-  import type { description, spec_field } from "$lib/typewriter";
+  import { matchAll, type description, type spec_field } from "$lib/typewriter";
 
   export let show: boolean = false;
 
   let importText: string = "";
 
-  const titleRegex = /(?<=<b>)w+:/;
-  const iconsRegex = /(?<=icons\/)[a-z-]+(?=.png'}})/;
+  const titleRegex = /(?<=<b>)w+:/g;
+  const iconsRegex = /(?<=src="{{media url='\/wysiwyg\/icons\/)[a-zA-Z-]+/g;
   const specsNameRegex =
-    /(?<=src="{{media url='\/wysiwyg\/icons\/[^"]+}}">)[A-Za-z: &]+/;
+    /(?<=src="{{media url='\/wysiwyg\/icons\/[^"]+}}">)[A-Za-z: &]+/g;
 
   function parseText() {
-    const titles = titleRegex.exec(importText);
-    const icons = iconsRegex.exec(importText);
-    const specsNames = specsNameRegex.exec(importText);
-
     const specs: spec_field[] = [];
-    const length = icons?.length ?? 0;
-    console.log(icons);
+    const titles = matchAll(titleRegex, importText);
+    const icons = matchAll(iconsRegex, importText);
+    const specNames = matchAll(specsNameRegex, importText);
 
-    for (let i = 0; i < length; i++) {
-      const specName = specsNames?.[i] ?? "no_spec_icon";
-      const iconName = icons?.[i] ?? "spec name";
-      specs.push({ spec_name: specName, icon_name: iconName });
-    }
+    icons.forEach((icon, index) => {
+      specs.push({
+        spec_name: specNames[index] || "",
+        icon_name: icon,
+      });
+    });
 
     const description: description = {
-      product_title: titles?.[0] ?? "product information:",
+      product_title: titles[0] || "product information:",
       product_description: "",
-      spec_title: titles?.[1] ?? "features:",
+      spec_title: titles[1] || "features:",
       specs,
       footer: "",
     };
-    console.log(description);
     $product_description = description;
     show = false;
   }

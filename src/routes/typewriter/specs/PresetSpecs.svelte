@@ -1,7 +1,11 @@
 <script lang="ts">
   import SpecsField from "./SpecsField.svelte";
-  import { specs_list_store } from "../../../lib/storage_manager";
+  import {
+    product_description,
+    specs_list_store,
+  } from "../../../lib/storage_manager";
   import type { spec_field } from "$lib/typewriter";
+  import { onMount } from "svelte";
 
   var product_information: string;
   var description: string;
@@ -38,7 +42,7 @@
       <div class="col-md-3"><p><b>${features}:</b></p>
           ${formatted_specs_list}
       </div>
-  </div>${footer}`;
+  </div>${footer || ""}`;
     alert(output_html);
   }
 
@@ -69,10 +73,30 @@
     footer = "";
     new_spec_name = "";
     new_icon_name = "no_spec_icon";
+    $specs_list_store = [];
+    $product_description = null;
   }
 
   function import_html() {
     show_import_modal = true;
+  }
+
+  onMount(() => {
+    $product_description = null;
+    product_description.subscribe(update_description);
+  });
+
+  function update_description() {
+    if (!$product_description) return;
+    var t = $product_description;
+    product_information = t.product_title;
+    description = t.product_description;
+    features = t.spec_title;
+    t.specs.forEach((s) => {
+      new_spec_name = s.spec_name;
+      new_icon_name = s.icon_name;
+      add_spec();
+    });
   }
 </script>
 
@@ -95,7 +119,10 @@
 <div
   class="border-dotted border-surface-500 border-4 p-2"
   style="border-radius: 25px;">
-  <input class="input mb-2" placeholder="features" /><br />
+  <input
+    class="input mb-2"
+    placeholder="features"
+    bind:value={features} /><br />
   {#each $specs_list_store as spec}
     <div class="flex">
       <SpecsField spec_name={spec.spec_name} icon_name={spec.icon_name} />
