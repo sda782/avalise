@@ -1,6 +1,7 @@
 <script lang="ts">
   import { product_description } from "$lib/storage_manager";
   import { matchAll, type description, type spec_field } from "$lib/typewriter";
+  import Modal from "../../misc/Modal.svelte";
 
   export let show: boolean = false;
 
@@ -36,19 +37,7 @@
   }
 </script>
 
-{#if show}
-  <div class="backdrop-blur-md fixed top-0 left-0 bottom-0 right-0 text-center">
-    <div class="w-8/12 mx-auto my-20 bg-surface-900 rounded-3xl p-5">
-      <h3 class="h3 text-left mb-2">Import</h3>
-      <textarea class="textarea resize-none" bind:value={importText}></textarea>
-      <div class="flex mt-2">
-        <button
-          class="btn variant-filled-primary mr-1 grow"
-          on:click={parseText}>Import</button>
-        <button
-          class="btn variant-filled-primary ml-1 grow"
-          on:click={() => (show = false)}>Cancel</button>
-      </div>
-    </div>
-  </div>
-{/if}
+<Modal bind:show onConfirm={parseText} confirm_text="Import">
+  <h3 class="h3 text-left mb-2">Import</h3>
+  <textarea class="textarea resize-none" bind:value={importText}></textarea>
+</Modal>
