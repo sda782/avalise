@@ -25,7 +25,8 @@
 </svelte:head>
 <div class="container w-10/12 h-full flex justify-center mx-auto">
   <div class="w-full text-center mt-10">
-    <button class="btn variant-filled-primary mb-2" on:click={add}>Add</button>
+    <button class="btn variant-filled-primary mb-2 float-start" on:click={add}
+      >Add Checklist</button>
     <div class="w-full">
       {#each lists as list_data}
         <ListContainer {list_data} {remove} />

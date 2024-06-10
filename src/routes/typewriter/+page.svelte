@@ -1,8 +1,7 @@
 <script lang="ts">
-  import ImportModal from "./ImportModal.svelte";
+  import ImportModal from "./ImportDescription.svelte";
   import PresetSpecs from "./specs/PresetSpecs.svelte";
   var show_modal: boolean;
-
 </script>
 
 <svelte:head>
