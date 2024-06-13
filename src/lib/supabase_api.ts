@@ -10,3 +10,17 @@ export async function get_icons() {
 
     return res.json()
 }
+
+export async function post_icon(icon_name: string) {
+    const r = await fetch(api_url + "/icons", {
+        method: "POST",
+        headers: {
+            "apikey": anon_key,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            icon_name: icon_name
+        })
+    })
+    return r
+}

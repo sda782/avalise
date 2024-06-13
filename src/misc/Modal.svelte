@@ -6,7 +6,8 @@
 
 {#if show}
   <div class="backdrop-blur-md fixed top-0 left-0 bottom-0 right-0 text-center">
-    <div class="w-8/12 mx-auto my-20 bg-surface-900 rounded-3xl p-5">
+    <div
+      class="w-8/12 mx-auto my-20 bg-surface-900 rounded-3xl p-5 border border-primary-500">
       <slot />
       <div class="flex mt-2">
         <button

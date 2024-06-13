@@ -7,7 +7,6 @@
   import TextOutputView from "../TextOutputView.svelte";
 
   var output_text: string;
-  var specs_list: Array<spec_field> = [];
 
   export var show_import_modal: boolean;
   var show_add_spec_modal: boolean;
@@ -38,10 +37,6 @@
     output_text = genereate_output_html();
     show_output_modal = true;
   }
-
-  onMount(() => {
-    clear_all();
-  });
 </script>
 
 <button
