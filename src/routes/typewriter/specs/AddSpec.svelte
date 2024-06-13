@@ -1,18 +1,26 @@
 <script lang="ts">
+  import { product_description_store } from "$lib/storage_manager";
   import Modal from "../../../misc/Modal.svelte";
   import SpecsField from "./SpecsField.svelte";
 
   export var show: boolean;
-  export var add_spec: (nin: string, nsn: string) => void;
-  var new_spec_name: string;
-  var new_icon_name: string;
+  var spec_name: string;
+  var icon_name: string;
+
   function confirm() {
-    add_spec(new_icon_name, new_spec_name);
-    new_spec_name = "";
-    new_icon_name = "no_spec_icon";
+    $product_description_store.specs = [
+      ...$product_description_store.specs,
+      {
+        icon_name,
+        spec_name,
+      },
+    ];
+    spec_name = "";
+    icon_name = "no_spec_icon";
   }
 </script>
 
 <Modal bind:show onConfirm={() => confirm()} confirm_text="Add Spec">
-  <SpecsField bind:icon_name={new_icon_name} bind:spec_name={new_spec_name} />
+  <h2 class="h2 mb-2 text-left">Add Spec</h2>
+  <SpecsField bind:icon_name bind:spec_name />
 </Modal>

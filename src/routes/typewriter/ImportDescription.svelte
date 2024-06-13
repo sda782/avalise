@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { product_description } from "$lib/storage_manager";
+  import { product_description_store } from "$lib/storage_manager";
   import { matchAll, type description, type spec_field } from "$lib/typewriter";
   import Modal from "../../misc/Modal.svelte";
 
@@ -32,7 +32,7 @@
       specs,
       footer: "",
     };
-    $product_description = description;
+    $product_description_store = description;
     show = false;
   }
 </script>
