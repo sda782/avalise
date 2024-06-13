@@ -2,6 +2,8 @@
   import ImportModal from "./ImportDescription.svelte";
   import PresetSpecs from "./specs/PresetSpecs.svelte";
   var show_modal: boolean;
+  /** @type {import('./$types').LayoutData} */
+  export let data;
 </script>
 
 <svelte:head>

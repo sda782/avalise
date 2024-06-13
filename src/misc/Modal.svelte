@@ -1,6 +1,6 @@
 <script lang="ts">
   export var show: boolean;
-  export var onConfirm: () => void;
+  export var onConfirm = () => {};
   export var confirm_text: string = "Confirm";
 </script>
 
