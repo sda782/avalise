@@ -1,8 +1,9 @@
-import { get_icons, post_icon } from "$lib/supabase_api"
+import { get_icons, get_presets, post_icon } from "$lib/supabase_api"
 
 export async function load() {
-    const r = await get_icons();
-    return { icons: r };
+    const icons = await get_icons();
+    const presets = await get_presets();
+    return { icons, presets };
 }
 
 /** @type {import('./$types').Actions} */

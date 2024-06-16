@@ -24,3 +24,13 @@ export async function post_icon(icon_name: string) {
     })
     return r
 }
+
+export async function get_presets() {
+    const res = await fetch(api_url + "/description_preset", {
+        headers: {
+            "apikey": anon_key
+        }
+    })
+
+    return res.json()
+}

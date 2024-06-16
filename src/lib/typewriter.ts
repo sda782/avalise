@@ -12,11 +12,20 @@ export type description = {
     spec_title: string
     specs: Array<spec_field>
     footer: string
+    ai_robot: string
 }
 
 export type icon_data = {
     id: number,
     icon_name: string
+}
+
+export type preset_data = {
+    id: number,
+    country_code: string,
+    product_title: string,
+    spec_title: string,
+    ai_robot: string | null
 }
 
 export function matchAll(regex: RegExp, text: string): string[] {
@@ -26,6 +35,10 @@ export function matchAll(regex: RegExp, text: string): string[] {
         matches.push(match[0]);
     }
     return matches;
+}
+
+export function format_icon_name(icon_name: string): string {
+    return icon_name.replace("icon", "").replaceAll("-", " ")
 }
 
 export function genereate_output_html(): string {
@@ -58,4 +71,12 @@ export function genereate_output_html(): string {
       </div>
   </div>${d.footer || ""}`;
     return output_text
+}
+
+export const presets = {
+    "dk": {
+        product_title: "Produkt information:",
+        spec_title: "Egenskaber",
+        ai_robot: ""
+    }
 }

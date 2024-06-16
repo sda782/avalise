@@ -9,6 +9,7 @@ export const product_description_store = writable<description>({
     spec_title: "",
     specs: [],
     footer: "",
+    ai_robot: ""
 })
 export const storage_timers = writable<Array<TimerData>>([])
 export const storage_specs_icons = writable<Array<icon_data>>()

@@ -11,13 +11,6 @@ export type search_history_item = {
     time_stamp: string
 }
 
-export const _links: Array<site_link> = [
-    {
-        country_code: "dk",
-        link: "avalise.vercel.app",
-        full_link: ""
-    }
-]
 export const links: Array<site_link> = [
     {
         country_code: "cz",
@@ -75,6 +68,9 @@ export const links: Array<site_link> = [
     }, {
         country_code: "hr",
         link: "euroskateshop.hr", full_link: ""
+    }, {
+        country_code: "ro",
+        link: "euroskateshop.ro", full_link: ""
     }, {
         country_code: "se",
         link: "euroskateshop.se", full_link: ""

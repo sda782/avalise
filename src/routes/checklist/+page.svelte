@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { countries, type check_list } from "$lib/checklist";
+  import { countries } from "$lib/global";
+  import { type check_list } from "$lib/checklist";
   import { onMount } from "svelte";
   import ListContainer from "./ListContainer.svelte";
   var lists: Array<check_list> = [];
