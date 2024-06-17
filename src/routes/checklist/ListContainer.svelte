@@ -11,9 +11,7 @@
     class=" btn variant-filled-surface"
     on:click={() => remove(list_data.id)}>Remove</button>
 </div>
-<div
-  class="border-dotted border-surface-500 border-4 p-2 my-2 text-left"
-  style="border-radius: 25px;">
+<div class="border-dotted border-surface-500 border-4 p-2 my-2 text-left">
   {#each list_data.list_items as country}
     <List {country} />
   {/each}

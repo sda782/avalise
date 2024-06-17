@@ -14,6 +14,9 @@ export default {
 			themes: {
 				preset: [
 					{
+						name: 'vintage',
+						enhancements: true,
+					}, {
 						name: 'crimson',
 						enhancements: true,
 					},

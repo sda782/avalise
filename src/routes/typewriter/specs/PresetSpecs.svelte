@@ -12,6 +12,7 @@
   var show_add_spec_modal: boolean;
   var show_output_modal: boolean;
   var show_add_new_icon_modal: boolean;
+  var inner_ai_disclaimer_html: HTMLDivElement;
 
   function remove_spec(spec: spec_field) {
     const index = $product_description_store.specs.indexOf(spec);
@@ -30,6 +31,20 @@
       footer: "",
       ai_robot: "",
     };
+  }
+
+  $: {
+    if (inner_ai_disclaimer_html) {
+      if ($product_description_store.ai_robot) {
+        let formatted_text = $product_description_store.ai_robot.replace(
+          'src="{{media url=&quot;.renditions/wysiwyg/icons/robot.jpg&quot;}}"',
+          'src="https://www.usaskateshop.com/media/wysiwyg/icons/robot.jpg"',
+        );
+        inner_ai_disclaimer_html.innerHTML = formatted_text;
+      } else {
+        inner_ai_disclaimer_html.innerHTML = "";
+      }
+    }
   }
 </script>
 
@@ -55,9 +70,7 @@
   bind:value={$product_description_store.product_description}
   class="textarea h-[15em] mb-2 resize-none"
   placeholder="description" /><br />
-<div
-  class="border-dotted border-surface-500 border-4 p-2"
-  style="border-radius: 25px;">
+<div class="border-dotted border-surface-500 border-4 p-2">
   <input
     class="input mb-2"
     placeholder="features"
@@ -69,7 +82,7 @@
           bind:spec_name={spec.spec_name}
           bind:icon_name={spec.icon_name} />
         <button
-          class="max-w-11 max-h-11 btn variant-outline-surface ml-2"
+          class="max-w-10 max-h-10 btn variant-outline-surface ml-2"
           on:click={() => remove_spec(spec)}>x</button>
       </div>
     {/each}
@@ -83,13 +96,13 @@
   class="textarea h-[10em] my-2 resize-none"
   placeholder="description footer text"
   bind:value={$product_description_store.footer}></textarea>
-<div class="float-start">
-  <input type="checkbox" class="checkbox me-2" /><span
-    >Insert AI disclaimer</span>
-</div>
-<textarea
-  class="textarea h-[10em] my-2 resize-none"
-  placeholder="was this text translated by AI?"
-  bind:value={$product_description_store.ai_robot}></textarea>
+<!-- <div class="text-left mb-6">
+  <input
+    type="checkbox"
+    class="checkbox me-2"
+    bind:value={include_disclaimer}
+    /><span>Include disclaimer</span>
+</div> -->
+<div class="h-[10em] text-left" bind:this={inner_ai_disclaimer_html}></div>
 <TextOutputView bind:show={show_output_modal} {output_text}></TextOutputView>
 <AddIcon bind:show={show_add_new_icon_modal}></AddIcon>

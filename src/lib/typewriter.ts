@@ -12,7 +12,7 @@ export type description = {
     spec_title: string
     specs: Array<spec_field>
     footer: string
-    ai_robot: string
+    ai_robot: string | null
 }
 
 export type icon_data = {
@@ -69,7 +69,7 @@ export function genereate_output_html(): string {
       <div class="col-md-3"><p><b>${d.spec_title}:</b></p>
           ${formatted_specs_list}
       </div>
-  </div>${d.footer || ""}`;
+  </div>${d.footer || ""}${d.ai_robot ?? ""}`;
     return output_text
 }
 

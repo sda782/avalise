@@ -14,9 +14,7 @@
     );
     $product_description_store.product_title = c.product_title;
     $product_description_store.spec_title = c.spec_title;
-    if (c.ai_robot) {
-      $product_description_store.ai_robot = c.ai_robot;
-    }
+    $product_description_store.ai_robot = c.ai_robot;
   }
 </script>
 

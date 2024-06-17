@@ -7,7 +7,7 @@
   var base_spec_url = "https://www.usaskateshop.com/media/wysiwyg/icons/";
 </script>
 
-<div class="w-full flex flex-wrap justify-items-start text-nowrap mt-16 mb-8">
+<div class=" flex flex-wrap justify-items-start text-nowrap mt-16 mb-8">
   {#each $page.data.icons as icon}
     <button
       on:click={() => {

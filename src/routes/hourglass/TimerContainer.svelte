@@ -78,12 +78,9 @@
 <div class="card px-4 w-80 pt-5 h-full">
   <!--    TIMERS DISPLAY    -->
 
-  <h2 class="h2">
-    {display_total_time}
+  <h2 class="h3">
+    {display_total_time} | {display_time}
   </h2>
-  <h4 class="h5 m-2">
-    {display_time}
-  </h4>
   <!--    NAME LABEL    -->
   <div
     class="mb-5"

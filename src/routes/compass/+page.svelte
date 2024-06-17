@@ -28,14 +28,14 @@
   <title>Compass</title>
 </svelte:head>
 <div class="container w-10/12 h-full flex justify-center mx-auto">
-  <div class="w-full text-center mt-10">
+  <div class="w-full text-left mt-10">
     <div class="mb-5">
       <input
         class="input mb-5"
         type="text"
         placeholder="Search term..."
         bind:value={form_search_word} />
-      <label class="flex items-center space-x-2">
+      <label class="flex space-x-2">
         <input
           class="checkbox"
           type="checkbox"
