@@ -31,6 +31,7 @@
       spec_title: titles[1] || "features:",
       specs,
       footer: "",
+      ai_robot: "",
     };
     $product_description_store = description;
     show = false;

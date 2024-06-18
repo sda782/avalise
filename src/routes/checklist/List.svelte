@@ -13,7 +13,6 @@
   style="background-image: url('https://flagcdn.com/{country}.svg');">
   <button
     class="relative z-10 min-w-[4.5em] h-[2em] bg-surface-900 block opacity-0"
-    style="border-radius: 25px;"
     on:click={disable}>
   </button>
 </div>
