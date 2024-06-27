@@ -9,7 +9,15 @@ export const product_description_store = writable<description>({
     spec_title: "",
     specs: [],
     footer: "",
-    ai_robot: ""
+    ai_robot: "",
+    export_setting: {
+        product_header: true,
+        product_body: true,
+        specs_header: true,
+        specs_body: true,
+        footer: true,
+        ai_disclaimer: true,
+    }
 })
 export const storage_timers = writable<Array<TimerData>>([])
 export const storage_specs_icons = writable<Array<icon_data>>()

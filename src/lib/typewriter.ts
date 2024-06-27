@@ -12,7 +12,8 @@ export type description = {
     spec_title: string
     specs: Array<spec_field>
     footer: string
-    ai_robot: string | null
+    ai_robot: string | null,
+    export_setting: export_settings
 }
 
 export type icon_data = {
@@ -28,6 +29,15 @@ export type preset_data = {
     ai_robot: string | null
 }
 
+export type export_settings = {
+    product_header: boolean,
+    product_body: boolean,
+    specs_header: boolean,
+    specs_body: boolean,
+    footer: boolean,
+    ai_disclaimer: boolean
+}
+
 export function matchAll(regex: RegExp, text: string): string[] {
     const matches: string[] = [];
     let match;
@@ -41,42 +51,49 @@ export function format_icon_name(icon_name: string): string {
     return icon_name.replace("icon", "").replaceAll("-", " ")
 }
 
-export function genereate_output_html(): string {
-    let formatted_specs_list = "";
-    const d = get(product_description_store)
-    if (!d) return ""
-    d.specs.forEach((spec) => {
-        formatted_specs_list += `<div class="feature-badge">
-          <img width="20" height="20" src="{{media url='/wysiwyg/icons/${spec.icon_name}.png'}}">${spec.spec_name}</div>\n`;
-    });
-    const output_text = `<style>
-      .feature-badge {
-          margin: 4px auto 4px 0;
-          padding: 8px 40px 8px 8px;
-          background: #eee5;
-          border-radius: 100px;
-      }
-      .feature-badge > img{
-          margin-right:4px; 
-          color:#888;
-          vertical-align:middle;
-      }
-  </style>
-  <div class="row">
-      <div class="col-md-6"><p><b>${d.product_title}:</b></p>
-          ${d.product_description}
-      </div>
-      <div class="col-md-3"><p><b>${d.spec_title}:</b></p>
-          ${formatted_specs_list}
-      </div>
-  </div>${d.footer || ""}${d.ai_robot ?? ""}`;
-    return output_text
-}
+export function generate_output_html(): string {
+    const d = get(product_description_store);
+    if (!d) return "";
 
-export const presets = {
-    "dk": {
-        product_title: "Produkt information:",
-        spec_title: "Egenskaber",
-        ai_robot: ""
-    }
+    const formattedSpecsList = d.specs.map(spec =>
+        `<div class="feature-badge">
+            <img width="20" height="20" src="{{media url='/wysiwyg/icons/${spec.icon_name}.png'}}">${spec.spec_name}
+        </div>\n`
+    ).join('');
+
+    const styles = d.export_setting.specs_body ? `
+        <style>
+            .feature-badge {
+                margin: 4px auto 4px 0;
+                padding: 8px 40px 8px 8px;
+                background: #eee5;
+                border-radius: 100px;
+            }
+            .feature-badge > img {
+                margin-right: 4px;
+                color: #888;
+                vertical-align: middle;
+            }
+        </style>` : '';
+
+    const productHeader = d.export_setting.product_header ? `<p><b>${d.product_title}:</b></p>` : '';
+    const productBody = d.export_setting.product_body ? d.product_description : '';
+    const productSection = (d.export_setting.product_header || d.export_setting.product_body) ?
+        `<div class="col-md-6">${productHeader}${productBody}</div>` : '';
+
+    const specsHeader = d.export_setting.specs_header ? `<p><b>${d.spec_title}:</b></p>` : '';
+    const specsBody = d.export_setting.specs_body ? formattedSpecsList : '';
+    const specsSection = (d.export_setting.specs_header || d.export_setting.specs_body) ?
+        `<div class="col-md-3">${specsHeader}${specsBody}</div>` : '';
+
+    const footer = d.export_setting.footer && d.footer ? d.footer : '';
+    const aiDisclaimer = d.export_setting.ai_disclaimer && d.ai_robot ? d.ai_robot : '';
+
+    return `${styles}
+    <div class="row"> 
+        ${productSection}
+        ${specsSection}
+    </div>
+    ${footer}
+    ${aiDisclaimer}`;
 }

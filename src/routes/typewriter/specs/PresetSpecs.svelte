@@ -1,10 +1,15 @@
 <script lang="ts">
   import SpecsField from "./SpecsField.svelte";
   import { product_description_store } from "../../../lib/storage_manager";
-  import { genereate_output_html, type spec_field } from "$lib/typewriter";
+  import {
+    generate_output_html,
+    type export_settings,
+    type spec_field,
+  } from "$lib/typewriter";
   import AddSpec from "./AddSpec.svelte";
   import TextOutputView from "../TextOutputView.svelte";
   import AddIcon from "./AddIcon.svelte";
+  import Settings from "./Settings.svelte";
 
   var output_text: string;
 
@@ -12,6 +17,7 @@
   var show_add_spec_modal: boolean;
   var show_output_modal: boolean;
   var show_add_new_icon_modal: boolean;
+  var show_settings_modal: boolean;
   var inner_ai_disclaimer_html: HTMLDivElement;
 
   function remove_spec(spec: spec_field) {
@@ -30,7 +36,20 @@
       specs: [],
       footer: "",
       ai_robot: "",
+      export_setting: {
+        product_header: true,
+        product_body: true,
+        specs_header: true,
+        specs_body: true,
+        footer: true,
+        ai_disclaimer: true,
+      },
     };
+  }
+
+  $: {
+    if ($product_description_store && $product_description_store.export_setting)
+      console.log($product_description_store.export_setting.product_header);
   }
 
   $: {
@@ -51,12 +70,15 @@
 <button
   class="btn variant-filled-primary mb-2 mr-2 float-start"
   on:click={() => {
-    output_text = genereate_output_html();
+    output_text = generate_output_html();
     show_output_modal = true;
   }}>Generate HTML Code</button
 ><button
   class="btn variant-filled-primary mb-2 mr-2 float-start"
   on:click={() => (show_import_modal = true)}>Import</button
+><button
+  class="btn variant-filled-primary mb-2 mr-2 float-start"
+  on:click={() => (show_settings_modal = true)}>Settings</button
 ><button
   class="btn variant-filled-primary mb-2 mr-2 float-start"
   on:click={() => (show_add_new_icon_modal = true)}>Add new icon</button>
@@ -96,13 +118,7 @@
   class="textarea h-[10em] my-2 resize-none"
   placeholder="description footer text"
   bind:value={$product_description_store.footer}></textarea>
-<!-- <div class="text-left mb-6">
-  <input
-    type="checkbox"
-    class="checkbox me-2"
-    bind:value={include_disclaimer}
-    /><span>Include disclaimer</span>
-</div> -->
 <div class="h-[10em] text-left" bind:this={inner_ai_disclaimer_html}></div>
-<TextOutputView bind:show={show_output_modal} {output_text}></TextOutputView>
-<AddIcon bind:show={show_add_new_icon_modal}></AddIcon>
+<TextOutputView bind:show={show_output_modal} {output_text} />
+<AddIcon bind:show={show_add_new_icon_modal} />
+<Settings bind:show={show_settings_modal} />
