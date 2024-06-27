@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { enhance } from "$app/forms";
   import Modal from "../../../misc/Modal.svelte";
   import ViewIcons from "./ViewIcons.svelte";
 
@@ -21,4 +22,17 @@
     <h3 class="h3">{selected_icon}</h3>
   </div>
   <ViewIcons {select} />
+  <form
+    method="post"
+    action="typewriter?/addicon"
+    class="w-1/2 flex"
+    use:enhance>
+    <input
+      class="input me-2"
+      type="text"
+      name="icon_name"
+      placeholder="icon name"
+      required />
+    <button class="btn variant-filled-primary" type="submit">Add</button>
+  </form>
 </Modal>

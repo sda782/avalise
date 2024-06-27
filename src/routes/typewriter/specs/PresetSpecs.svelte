@@ -1,11 +1,7 @@
 <script lang="ts">
   import SpecsField from "./SpecsField.svelte";
   import { product_description_store } from "../../../lib/storage_manager";
-  import {
-    generate_output_html,
-    type export_settings,
-    type spec_field,
-  } from "$lib/typewriter";
+  import { generate_output_html, type spec_field } from "$lib/typewriter";
   import AddSpec from "./AddSpec.svelte";
   import TextOutputView from "../TextOutputView.svelte";
   import AddIcon from "./AddIcon.svelte";
@@ -45,11 +41,6 @@
         ai_disclaimer: true,
       },
     };
-  }
-
-  $: {
-    if ($product_description_store && $product_description_store.export_setting)
-      console.log($product_description_store.export_setting.product_header);
   }
 
   $: {

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { product_description_store } from "$lib/storage_manager";
   import Modal from "../../../misc/Modal.svelte";
+  import AddIcon from "./AddIcon.svelte";
   import SpecsField from "./SpecsField.svelte";
 
   export var show: boolean;
