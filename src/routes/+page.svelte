@@ -46,7 +46,7 @@
           <a href="checklist" class="btn variant-filled-primary w-full">Mark</a>
         </div>
       </div>
-      <div class="card w-1/3">
+      <!-- <div class="card w-1/3">
         <div class="card-header"><p class="h3">Canvas</p></div>
         <img
           src="/menu_icons/canvas.png"
@@ -54,6 +54,17 @@
           class="mx-auto my-10 invert w-1/6" />
         <div class="card-footer">
           <a href="canvas" class="btn variant-filled-primary w-full">Draw</a>
+        </div>
+      </div> -->
+      <div class="card w-1/3">
+        <div class="card-header"><p class="h3">Canvas</p></div>
+        <img
+          src="/menu_icons/table.png"
+          alt="compass"
+          class="mx-auto my-10 invert w-1/6" />
+        <div class="card-footer">
+          <a href="arithmometer" class="btn variant-filled-primary w-full"
+            >Calc</a>
         </div>
       </div>
     </div>

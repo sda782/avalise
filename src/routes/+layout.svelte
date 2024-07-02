@@ -42,10 +42,17 @@
             alt="checklist"
             class="m-auto invert" />
         </AppRailAnchor>
-        <AppRailAnchor href="/canvas" class="relative inset-0 flex">
+        <!-- <AppRailAnchor href="/canvas" class="relative inset-0 flex">
           <img
             width="32"
             src="/menu_icons/canvas.png"
+            alt="canvas"
+            class="m-auto invert" />
+        </AppRailAnchor> -->
+        <AppRailAnchor href="/arithmometer" class="relative inset-0 flex">
+          <img
+            width="32"
+            src="/menu_icons/table.png"
             alt="canvas"
             class="m-auto invert" />
         </AppRailAnchor>
