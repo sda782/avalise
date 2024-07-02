@@ -57,7 +57,7 @@
         </div>
       </div> -->
       <div class="card w-1/3">
-        <div class="card-header"><p class="h3">Canvas</p></div>
+        <div class="card-header"><p class="h3">Arithmometer</p></div>
         <img
           src="/menu_icons/table.png"
           alt="compass"

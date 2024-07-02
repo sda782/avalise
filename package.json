@@ -1,6 +1,6 @@
 {
-  "name": "briefcase",
-  "version": "0.0.1",
+  "name": "avalise",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "vite dev",
@@ -34,5 +34,7 @@
     "vite-plugin-tailwind-purgecss": "0.2.0"
   },
   "type": "module",
-  "dependencies": {}
+  "dependencies": {
+    "rbql": "^0.27.0"
+  }
 }
