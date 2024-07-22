@@ -76,11 +76,6 @@
 </script>
 
 <div class="card px-4 w-80 pt-5 h-full">
-  <!--    TIMERS DISPLAY    -->
-
-  <h2 class="h3">
-    {display_total_time} | {display_time}
-  </h2>
   <!--    NAME LABEL    -->
   <div
     class="mb-5"
@@ -97,12 +92,18 @@
         on:keypress={(event) => {
           if (event.key === "Enter") {
             toggle_name_edit();
+            $storage_timers = [... $storage_timers]
           }
         }} />
     {:else}
-      <p>{timer.name}</p>
+      <h3 class="h3">{timer.name}</h3>
     {/if}
   </div>
+  <!--    TIMERS DISPLAY    -->
+
+  <h4 class="h4 mb-2">
+    {display_total_time} | {display_time}
+  </h4>
   <table class="w-full">
     <tbody>
       <tr>
