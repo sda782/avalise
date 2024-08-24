@@ -11,6 +11,7 @@ export const product_description_store = writable<description>({
     footer: "",
     ai_robot: "",
     export_setting: {
+        style: true,
         product_header: true,
         product_body: true,
         specs_header: true,

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { countries } from "$lib/global";
+  import { languages } from "$lib/global";
   import ImportModal from "./ImportDescription.svelte";
   import PresetSpecs from "./specs/PresetSpecs.svelte";
   import { product_description_store } from "../../lib/storage_manager";
@@ -7,14 +7,24 @@
   import { type preset_data } from "$lib/typewriter";
 
   var show_modal: boolean;
+  var current_preset: string;
 
   function set_preset(country: string) {
     var c: preset_data = $page.data.presets.find(
       (x: preset_data) => x.country_code == country,
     );
+    if (c == undefined) return;
     $product_description_store.product_title = c.product_title;
     $product_description_store.spec_title = c.spec_title;
     $product_description_store.ai_robot = c.ai_robot;
+
+    current_preset = country;
+  }
+  $: if (
+    $product_description_store != null &&
+    $product_description_store.product_title == ""
+  ) {
+    current_preset = "";
   }
 </script>
 
@@ -23,16 +33,18 @@
 </svelte:head>
 
 <div
-  class="container w-full h-full pl-10 pr-10 pt-10 flex justify-center mx-auto">
+  class="container w-full h-full pl-10 pr-10 pt-10 flex justify-center mx-auto"
+>
   <div class="w-1/4 pr-10 sidebar overflow-scroll hide-scrollbar">
-    <h2 class="h2 mb-2">Presets:</h2>
+    <h2 class="h2 mb-2">Presets: {current_preset ?? ""}</h2>
     <div>
-      {#each countries as country}
+      {#each languages as country}
         <button
           class="btn bg-cover bg-center mx-1 mb-2 w-[5em] h-[2.5em]"
           style="background-image: url('https://flagcdn.com/{country}.svg');"
           data-country-code={country}
-          on:click={() => set_preset(country)}></button>
+          on:click={() => set_preset(country)}
+        ></button>
       {/each}
     </div>
   </div>

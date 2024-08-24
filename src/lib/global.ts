@@ -20,3 +20,22 @@ export const countries = [
     "no",
     "us",
 ];
+
+export const languages = [
+    "cz",
+    "de",
+    "pt",
+    "es",
+    "fi",
+    "pl",
+    "it",
+    "gb",
+    "nl",
+    "fr",
+    "hr",
+    "ro",
+    "se",
+    "dk",
+    "no",
+    "us",
+];

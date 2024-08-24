@@ -8,10 +8,11 @@
         <img
           src="/menu_icons/compass.png"
           alt="compass"
-          class="mx-auto my-10 invert w-1/6" />
+          class="mx-auto my-10 invert w-1/6"
+        />
         <div class="card-footer">
-          <a href="/compass" class="btn variant-filled-primary w-full"
-            >Search</a>
+          <a href="/compass" class="btn variant-filled-primary w-full">Search</a
+          >
         </div>
       </div>
       <div class="card w-1/3">
@@ -19,10 +20,12 @@
         <img
           src="/menu_icons/hourglass.png"
           alt="compass"
-          class="mx-auto my-10 invert w-1/6" />
+          class="mx-auto my-10 invert w-1/6"
+        />
         <div class="card-footer">
           <a href="/hourglass" class="btn variant-filled-primary w-full"
-            >Track</a>
+            >Track</a
+          >
         </div>
       </div>
       <div class="card w-1/3">
@@ -30,10 +33,12 @@
         <img
           src="/menu_icons/typewriter.png"
           alt="compass"
-          class="mx-auto my-10 invert w-1/6" />
+          class="mx-auto my-10 invert w-1/6"
+        />
         <div class="card-footer">
           <a href="/typewriter" class="btn variant-filled-primary w-full"
-            >Type</a>
+            >Type</a
+          >
         </div>
       </div>
       <div class="card w-1/3">
@@ -41,19 +46,10 @@
         <img
           src="/menu_icons/document.png"
           alt="compass"
-          class="mx-auto my-10 invert w-1/6" />
+          class="mx-auto my-10 invert w-1/6"
+        />
         <div class="card-footer">
           <a href="checklist" class="btn variant-filled-primary w-full">Mark</a>
-        </div>
-      </div>
-      <div class="card w-1/3">
-        <div class="card-header"><p class="h3">Canvas</p></div>
-        <img
-          src="/menu_icons/canvas.png"
-          alt="compass"
-          class="mx-auto my-10 invert w-1/6" />
-        <div class="card-footer">
-          <a href="canvas" class="btn variant-filled-primary w-full">Draw</a>
         </div>
       </div>
     </div>
