@@ -30,6 +30,7 @@ export type preset_data = {
 }
 
 export type export_settings = {
+    style: boolean,
     product_header: boolean,
     product_body: boolean,
     specs_header: boolean,
@@ -61,7 +62,7 @@ export function generate_output_html(): string {
         </div>\n`
     ).join('');
 
-    const styles = d.export_setting.specs_body ? `
+    const styles = d.export_setting.style ? `
         <style>
             .feature-badge {
                 margin: 4px auto 4px 0;

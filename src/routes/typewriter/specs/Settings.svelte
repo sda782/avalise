@@ -10,44 +10,56 @@
       <input
         class="checkbox"
         type="checkbox"
-        bind:checked={$product_description_store.export_setting
-          .product_header} />
+        bind:checked={$product_description_store.export_setting.style}
+      />
+      <span>Style</span>
+    </label>
+    <label>
+      <input
+        class="checkbox"
+        type="checkbox"
+        bind:checked={$product_description_store.export_setting.product_header}
+      />
       <span>Product header</span>
     </label>
     <label>
       <input
         class="checkbox"
         type="checkbox"
-        bind:checked={$product_description_store.export_setting.product_body} />
+        bind:checked={$product_description_store.export_setting.product_body}
+      />
       <span>Product body</span>
     </label>
     <label>
       <input
         class="checkbox"
         type="checkbox"
-        bind:checked={$product_description_store.export_setting.specs_header} />
+        bind:checked={$product_description_store.export_setting.specs_header}
+      />
       <span>Specs Header</span>
     </label>
     <label>
       <input
         class="checkbox"
         type="checkbox"
-        bind:checked={$product_description_store.export_setting.specs_body} />
+        bind:checked={$product_description_store.export_setting.specs_body}
+      />
       <span>Specs Body</span>
     </label>
     <label>
       <input
         class="checkbox"
         type="checkbox"
-        bind:checked={$product_description_store.export_setting.footer} />
+        bind:checked={$product_description_store.export_setting.footer}
+      />
       <span>Footer</span>
     </label>
     <label>
       <input
         class="checkbox"
         type="checkbox"
-        bind:checked={$product_description_store.export_setting
-          .ai_disclaimer} />
+        bind:checked={$product_description_store.export_setting.ai_disclaimer}
+      />
       <span>AI Disclaimer</span>
     </label>
   </div>
