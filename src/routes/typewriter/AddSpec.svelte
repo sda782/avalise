@@ -1,6 +1,6 @@
 <script lang="ts">
   import { product_description_store } from "$lib/storage_manager";
-  import Modal from "../../../misc/Modal.svelte";
+  import Modal from "../../misc/Modal.svelte";
   import AddIcon from "./AddIcon.svelte";
   import SpecsField from "./SpecsField.svelte";
 
@@ -9,8 +9,8 @@
   var icon_name: string;
 
   function confirm() {
-    $product_description_store.specs = [
-      ...$product_description_store.specs,
+    $product_description_store.specs_data.specs = [
+      ...$product_description_store.specs_data.specs,
       {
         icon_name,
         spec_name,

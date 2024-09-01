@@ -7,7 +7,11 @@ export const product_description_store = writable<description>({
     product_title: "",
     product_description: "",
     spec_title: "",
-    specs: [],
+    specs_data: {
+        builder: true,
+        specs: [],
+        specs_text: ""
+    },
     footer: "",
     ai_robot: "",
     export_setting: {

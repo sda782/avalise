@@ -49,6 +49,16 @@
           />
         </AppRailAnchor>
       </svelte:fragment>
+      <svelte:fragment slot="trail">
+        <AppRailAnchor href="/bug"
+          ><img
+            width="32"
+            src="/menu_icons/bug.png"
+            alt="checklist"
+            class="m-auto invert"
+          /></AppRailAnchor
+        >
+      </svelte:fragment>
     </AppRail>
   </svelte:fragment>
   <slot />

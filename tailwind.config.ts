@@ -16,10 +16,7 @@ export default {
 					{
 						name: 'vintage',
 						enhancements: true,
-					}, {
-						name: 'crimson',
-						enhancements: true,
-					},
+					}
 				],
 			},
 		}),

@@ -11,6 +11,23 @@ export async function get_icons() {
     return res.json()
 }
 
+export async function post_bug_report(bug_report: string, pin: number) {
+    if (djb2Hash(pin.toString()) !== 2085776005) {
+        return
+    }
+    const r = await fetch(api_url + "/bugs", {
+        method: "POST",
+        headers: {
+            "apikey": anon_key,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            report: bug_report
+        })
+    }).catch(e => console.log(e))
+    return r
+}
+
 export async function post_icon(icon_name: string) {
     const r = await fetch(api_url + "/icons", {
         method: "POST",
@@ -33,4 +50,12 @@ export async function get_presets() {
     })
 
     return res.json()
+}
+
+function djb2Hash(str: string) {
+    let hash = 5381; // Initialize with a large prime number
+    for (let i = 0; i < str.length; i++) {
+        hash = (hash * 33) ^ str.charCodeAt(i); // Multiply hash by 33 and XOR with current character
+    }
+    return hash >>> 0; // Convert to unsigned 32-bit integer
 }

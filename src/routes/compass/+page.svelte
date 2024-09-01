@@ -5,6 +5,7 @@
   var form_search_word: string = "";
   var is_search: boolean = true;
   var search_history: Array<search_history_item> = [];
+
   function add_search(e: any): void {
     console.log(e);
     var t = e.target;
@@ -34,7 +35,8 @@
         class="input mb-5"
         type="text"
         placeholder="Search term..."
-        bind:value={form_search_word} />
+        bind:value={form_search_word}
+      />
       <label class="flex space-x-2">
         <input
           class="checkbox"
@@ -42,7 +44,8 @@
           bind:checked={is_search}
           on:change={(e) => {
             ls = [...links];
-          }} />
+          }}
+        />
         <p>search</p>
       </label>
     </div>
@@ -59,12 +62,14 @@
               ? (is_search ? "/catalogsearch/result/?q=" : "/") +
                 form_search_word
               : "")}
-          on:click={add_search}><span></span></a>
+          on:click={add_search}><span></span></a
+        >
       {/each}
     </div>
     <div>
       <button class="float-end btn variant-filled-surface" on:click={clear}
-        >Clear</button>
+        >Clear</button
+      >
       <table class="text-left w-full">
         <thead>
           <tr>
@@ -79,7 +84,9 @@
                   ><img
                     class="w-10 h-7"
                     src="https://flagcdn.com/{sh.country_code}.svg"
-                    alt={sh.country_code} /></td>
+                    alt={sh.country_code}
+                  /></td
+                >
                 <td><a target="_blank" href={sh.link}>{sh.link}</a></td>
                 <td>{sh.time_stamp}</td>
               </tr>
