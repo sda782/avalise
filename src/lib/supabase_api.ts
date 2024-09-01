@@ -24,7 +24,7 @@ export async function post_bug_report(bug_report: string, pin: number) {
         body: JSON.stringify({
             report: bug_report
         })
-    }).then(r => console.log(r)).catch(e => console.log(e))
+    }).catch(e => console.log(e))
     return r
 }
 
