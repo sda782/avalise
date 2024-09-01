@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Modal from "../../../misc/Modal.svelte";
-  import { product_description_store } from "../../../lib/storage_manager";
+  import Modal from "../../misc/Modal.svelte";
+  import { product_description_store } from "../../lib/storage_manager";
   export var show: boolean;
 </script>
 
@@ -8,7 +8,11 @@
   <div class="w-full text-left">
     <h2 class="h2 mb-2 text-left">Settings</h2>
     <div class="flex flex-row flex-wrap gap-5">
-      <label class="border-dotted border-surface-500 border-4 p-2">
+      <label
+        class="border-solid {$product_description_store.export_setting.style
+          ? 'border-primary-500'
+          : 'border-surface-500'} border-2 p-2"
+      >
         <input
           class="checkbox"
           type="checkbox"
@@ -16,7 +20,12 @@
         />
         <span>Style</span>
       </label>
-      <label class="border-dotted border-surface-500 border-4 p-2">
+      <label
+        class="border-solid {$product_description_store.export_setting
+          .product_header
+          ? 'border-primary-500'
+          : 'border-surface-500'} border-2 p-2"
+      >
         <input
           class="checkbox"
           type="checkbox"
@@ -25,7 +34,12 @@
         />
         <span>Product header</span>
       </label>
-      <label class="border-dotted border-surface-500 border-4 p-2">
+      <label
+        class="border-solid {$product_description_store.export_setting
+          .product_body
+          ? 'border-primary-500'
+          : 'border-surface-500'} border-2 p-2"
+      >
         <input
           class="checkbox"
           type="checkbox"
@@ -33,7 +47,12 @@
         />
         <span>Product body</span>
       </label>
-      <label class="border-dotted border-surface-500 border-4 p-2">
+      <label
+        class="border-solid {$product_description_store.export_setting
+          .specs_header
+          ? 'border-primary-500'
+          : 'border-surface-500'} border-2 p-2"
+      >
         <input
           class="checkbox"
           type="checkbox"
@@ -41,7 +60,12 @@
         />
         <span>Specs Header</span>
       </label>
-      <label class="border-dotted border-surface-500 border-4 p-2">
+      <label
+        class="border-solid {$product_description_store.export_setting
+          .specs_body
+          ? 'border-primary-500'
+          : 'border-surface-500'} border-2 p-2"
+      >
         <input
           class="checkbox"
           type="checkbox"
@@ -49,7 +73,11 @@
         />
         <span>Specs Body</span>
       </label>
-      <label class="border-dotted border-surface-500 border-4 p-2">
+      <label
+        class="border-solid {$product_description_store.export_setting.footer
+          ? 'border-primary-500'
+          : 'border-surface-500'} border-2 p-2"
+      >
         <input
           class="checkbox"
           type="checkbox"
@@ -57,7 +85,12 @@
         />
         <span>Footer</span>
       </label>
-      <label class="border-dotted border-surface-500 border-4 p-2">
+      <label
+        class="border-solid {$product_description_store.export_setting
+          .ai_disclaimer
+          ? 'border-primary-500'
+          : 'border-surface-500'} border-2 p-2"
+      >
         <input
           class="checkbox"
           type="checkbox"

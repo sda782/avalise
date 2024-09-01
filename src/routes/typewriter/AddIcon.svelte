@@ -1,6 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import Modal from "../../../misc/Modal.svelte";
+  import Modal from "../../misc/Modal.svelte";
   import ViewIcons from "./ViewIcons.svelte";
   export var show: boolean;
 </script>
@@ -11,13 +11,15 @@
     method="post"
     action="typewriter?/addicon"
     class="w-1/2 flex float-end"
-    use:enhance>
+    use:enhance
+  >
     <input
       class="input me-2"
       type="text"
       name="icon_name"
       placeholder="icon name"
-      required />
+      required
+    />
     <button class="btn variant-filled-primary" type="submit">Add</button>
   </form>
   <ViewIcons selectable={false} />

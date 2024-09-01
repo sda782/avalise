@@ -1,6 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import Modal from "../../../misc/Modal.svelte";
+  import Modal from "../../misc/Modal.svelte";
   import ViewIcons from "./ViewIcons.svelte";
 
   export var selected_icon: string;

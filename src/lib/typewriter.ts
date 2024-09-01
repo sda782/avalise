@@ -10,10 +10,16 @@ export type description = {
     product_title: string,
     product_description: string,
     spec_title: string
-    specs: Array<spec_field>
+    specs_data: spec_data,
     footer: string
     ai_robot: string | null,
     export_setting: export_settings
+}
+
+export type spec_data = {
+    builder: boolean,
+    specs: Array<spec_field>
+    specs_text: string
 }
 
 export type icon_data = {
@@ -56,11 +62,11 @@ export function generate_output_html(): string {
     const d = get(product_description_store);
     if (!d) return "";
 
-    const formattedSpecsList = d.specs.map(spec =>
+    let formattedSpecsList = d.specs_data.builder ? d.specs_data.specs.map(spec =>
         `<div class="feature-badge">
             <img width="20" height="20" src="{{media url='/wysiwyg/icons/${spec.icon_name}.png'}}">${spec.spec_name}
         </div>\n`
-    ).join('');
+    ).join('') : d.specs_data.specs_text;
 
     const styles = d.export_setting.style ? `
         <style>

@@ -4,12 +4,13 @@
   import { type preset_data } from "$lib/typewriter";
 
   import { generate_output_html, type spec_field } from "$lib/typewriter";
-    import { product_description_store } from "$lib/storage_manager";
-    import AddIcon from "./specs/AddIcon.svelte";
-    import AddSpec from "./specs/AddSpec.svelte";
-    import Settings from "./specs/Settings.svelte";
-    import SpecsField from "./specs/SpecsField.svelte";
-    import TextOutputView from "./TextOutputView.svelte";
+  import { product_description_store } from "$lib/storage_manager";
+  import AddIcon from "./AddIcon.svelte";
+  import AddSpec from "./AddSpec.svelte";
+  import Settings from "./Settings.svelte";
+  import SpecsField from "./SpecsField.svelte";
+  import TextOutputView from "./TextOutputView.svelte";
+  import Tabs from "./Tabs.svelte";
 
   var current_preset: string;
   var output_text: string;
@@ -21,10 +22,12 @@
   var inner_ai_disclaimer_html: HTMLDivElement;
 
   function remove_spec(spec: spec_field) {
-    const index = $product_description_store.specs.indexOf(spec);
+    const index = $product_description_store.specs_data.specs.indexOf(spec);
     if (index !== -1) {
-      $product_description_store.specs =
-        $product_description_store.specs.filter((_, i) => i !== index);
+      $product_description_store.specs_data.specs =
+        $product_description_store.specs_data.specs.filter(
+          (_, i) => i !== index,
+        );
     }
   }
 
@@ -33,7 +36,11 @@
       product_title: "",
       product_description: "",
       spec_title: "",
-      specs: [],
+      specs_data: {
+        builder: false,
+        specs: [],
+        specs_text: "",
+      },
       footer: "",
       ai_robot: "",
       export_setting: {
@@ -131,30 +138,39 @@
       placeholder="description"
     /><br />
     <div class="border-dotted border-surface-500 border-4 p-2">
+      <Tabs />
       <input
-        class="input mb-2"
+        class="input my-2"
         placeholder="features"
         bind:value={$product_description_store.spec_title}
       /><br />
-      {#if $product_description_store.specs}
-        {#each $product_description_store.specs as spec}
-          <div class="flex">
-            <SpecsField
-              bind:spec_name={spec.spec_name}
-              bind:icon_name={spec.icon_name}
-            />
-            <button
-              class="max-w-10 max-h-10 btn variant-outline-surface ml-2"
-              on:click={() => remove_spec(spec)}>x</button
-            >
-          </div>
-        {/each}
+      {#if $product_description_store.specs_data.builder}
+        {#if $product_description_store.specs_data.specs}
+          {#each $product_description_store.specs_data.specs as spec}
+            <div class="flex">
+              <SpecsField
+                bind:spec_name={spec.spec_name}
+                bind:icon_name={spec.icon_name}
+              />
+              <button
+                class="max-w-10 max-h-10 btn variant-outline-surface ml-2"
+                on:click={() => remove_spec(spec)}>x</button
+              >
+            </div>
+          {/each}
+        {/if}
+        <AddSpec bind:show={show_add_spec_modal} />
+        <button
+          class="btn variant-filled-primary w-full"
+          on:click={() => (show_add_spec_modal = true)}>Add Spec</button
+        >
+      {:else}
+        <textarea
+          bind:value={$product_description_store.specs_data.specs_text}
+          class="textarea h-[15em] resize-none"
+          placeholder="description"
+        />
       {/if}
-      <AddSpec bind:show={show_add_spec_modal} />
-      <button
-        class="btn variant-filled-primary w-full"
-        on:click={() => (show_add_spec_modal = true)}>Add Spec</button
-      >
     </div>
     <textarea
       class="textarea h-[10em] my-2 resize-none"
