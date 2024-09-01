@@ -39,3 +39,5 @@ export const languages = [
     "no",
     "us",
 ];
+
+
